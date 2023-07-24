@@ -78,6 +78,26 @@ public class App {
         return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+    //Form to post sighting form
+    post("/sightings", (request, response) -> {
+        Map<String, Object> model = new HashMap<String, Object>();
+        int animal_id = Integer.parseInt(request.queryParams("animal"));
+        String location = request.queryParams("location");
+        String ranger_name = request.queryParams("rangerName");
+
+
+        try {
+            Sighting sighting = new Sighting(animal_id, location, ranger_name);
+        } catch (IllegalArgumentException exception) {
+            System.out.println("Please enter Ranger name.");
+        }
+        response.redirect("/sightings");
+        return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    //
+
+
 
 
 
