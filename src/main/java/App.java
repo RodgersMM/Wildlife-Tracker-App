@@ -144,6 +144,18 @@ public class App {
         return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+    //Form to edit sightings retrieving
+    get("/sightings/:id/edit", (request, response) -> {
+        Map<String, Object> model = new HashMap<String, Object>();
+        model.put("sighting", Sighting.find(Integer.parseInt(request.params(":id"))));
+        model.put("Animal", Animal.class);
+        model.put("template", "templates/SightingForm.vtl");
+        return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+
+
+
 
 
 
