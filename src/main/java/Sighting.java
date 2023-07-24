@@ -71,6 +71,19 @@ public class Sighting implements DatabaseManagement {
         }
     }
 
+    //Listing all sightings from sighting table
+    public static List<Sighting> all() {
+        String sql = "SELECT * FROM sightings ORDER BY timestamp DESC;";
+
+        try (Connection con = DB.sql2o.open()) {
+            return con.createQuery(sql)
+                    .throwOnMappingFailure(false)
+                    .executeAndFetch(Sighting.class);
+        }
+    }
+
+    //
+
 
 
 
