@@ -95,7 +95,14 @@ public class App {
         return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    //
+    //Retrieve all sightings
+    get("/sightings", (request, response) -> {
+        Map<String, Object> model = new HashMap<String, Object>();
+        model.put("sightings", Sighting.all());
+        model.put("Animal", Animal.class);
+        model.put("template", "templates/sightings.vtl");
+        return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
 
 
 
