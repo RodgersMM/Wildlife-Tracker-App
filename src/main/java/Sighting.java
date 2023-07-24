@@ -92,7 +92,17 @@ public class Sighting implements DatabaseManagement {
         }
     }
 
-    //
+    //Overriding Sighting
+    public boolean equals(Object otherSighting){
+        if(!(otherSighting instanceof Sighting)){
+            return false;
+        }else{
+            Sighting newSighting = (Sighting) otherSighting;
+            return this.getAnimalId()==newSighting.getAnimalId() && this.getRangerName().equals(newSighting.getRangerName());
+        }
+    }
+
+
 
 
 
