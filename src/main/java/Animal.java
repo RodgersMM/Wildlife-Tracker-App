@@ -48,6 +48,21 @@ public class Animal {
         return false;
     }
 
+    //Save new name by type and name
+    public void save() {
+        String sql = "INSERT INTO animals (name, type) VALUES (:name, :type)";
+        try(Connection con = DB.sql2o.open()) {
+            this.id = (int) con.createQuery(sql, true)
+                    .addParameter("name", name)
+                    .addParameter("type", type)
+                    .throwOnMappingFailure(false)
+                    .executeUpdate()
+                    .getKey();
+        }
+    }
+
+    //
+
 
 
 
