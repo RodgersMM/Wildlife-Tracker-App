@@ -114,6 +114,17 @@ public class App {
         return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+    //Update Objects
+    //Form to edit retrieving animals
+    get("/animals/:id/edit", (request, response) -> {
+        Map<String, Object> model = new HashMap<String, Object>();
+        model.put("animal", Animal.find(Integer.parseInt(request.params(":id"))));
+        model.put("endangered", Endangered.find(Integer.parseInt(request.params(":id"))));
+        model.put("template", "templates/animalEditForm.vtl");
+        return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+
 
 
 
