@@ -99,14 +99,18 @@ public class Animal {
           }
       }
 
+      //Update animal by Id && error handling incase it is not mapped
+      public void update() {
+          String sql = "UPDATE animals SET name = :name WHERE id = :id";
 
-
-
-
-
-
-    public static void main(String[] args) {
-        //
-
-    }
+          try(Connection con = DB.sql2o.open()) {
+              con.createQuery(sql)
+                      .addParameter("name", name)
+                      .addParameter("id", id)
+                      .throwOnMappingFailure(false)
+                      .executeUpdate();
+          }
+      }
 }
+
+
