@@ -15,6 +15,17 @@ public class App {
         }
         port(port);
 
+        //retrieve index page
+
+        get ("/", (request, response) -> {
+            Map<String, Object> model = new  HashMap<String, Object>();
+            model.put("template", "templates/animalForm.vtl");
+            return new ModelAndView(model, layout);
+        }, new VelocityTemplateEngine());
+        }
+    )
+
+
 
 
     }
