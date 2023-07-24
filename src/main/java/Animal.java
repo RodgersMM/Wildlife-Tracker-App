@@ -61,6 +61,22 @@ public class Animal {
         }
     }
 
+    //Delete animal and sighting by Id and error handling
+    public void delete() {
+        try(Connection con = DB.sql2o.open()) {
+            String sql = "DELETE from animals WHERE id = :id";
+            con.createQuery(sql)
+                    .addParameter("id", id)
+                    .throwOnMappingFailure(false)
+                    .executeUpdate();
+            String sql2 = "DELETE from sightings WHERE animal_id = :id";
+            con.createQuery(sql2)
+                    .addParameter("id", id)
+                    .throwOnMappingFailure(false)
+                    .executeUpdate();
+        }
+    }
+
     //
 
 
