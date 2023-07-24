@@ -47,7 +47,15 @@ public class Sighting implements DatabaseManagement {
     }
 
 
-    //
+    //set methods for Sightings
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public void setRangerName(String rangerName) {
+        this.ranger_name = rangerName;
+    }
+
 
 
 
