@@ -169,25 +169,21 @@ public class App {
 
 
 
+    //deleting a sighting
+    get("/sightings/:id/delete", (request, response) -> {
+        Map<String, Object> model = new HashMap<String, Object>();
+        Sighting.find(Integer.parseInt(request.params(":id"))).delete();
+        response.redirect("/sightings");
+        return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
 
+    //Delete Animal Object
 
-
-
-
-
-
-
-
-
-
-
-
-    )
-
-
-
-
+    get("/animals/:id/delete", (request, response) -> {
+        Map<String, Object> model = new HashMap<String, Object>();
+        Animal.find(Integer.parseInt(request.params(":id"))).delete();
+        response.redirect("/animals");
+        return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
     }
-
-
 }
