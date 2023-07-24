@@ -153,6 +153,22 @@ public class App {
         return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+    //Update Sighting instance
+    post("/sightings/:id/edit", (request, response) -> {
+        Map<String, Object> model = new HashMap<String, Object>();
+        int id = Integer.parseInt(request.params(":id"));
+        String location = request.queryParams("location");
+        String rangerName = request.queryParams("rangerName");
+        Sighting sighting = Sighting.find(id);
+        sighting.setLocation(location);
+        sighting.setRangerName(rangerName);
+        sighting.update();
+        response.redirect("/sightings");
+        return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+
+
 
 
 
