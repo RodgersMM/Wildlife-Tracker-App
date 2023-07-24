@@ -114,3 +114,29 @@ public class Sighting implements DatabaseManagement {
                 return null;
             }
         }
+
+        // Implement method delete() from   Database management class
+      public void delete(){
+        try(Connection con = DB.sql2o.open()) {
+            String sql = "DELETE FROM sightings WHERE id=:id;";
+            con.createQuery(sql)
+                    .addParameter("id",id)
+                    .executeUpdate();
+        }
+    }
+
+    //update the Sightings table && throwing an exception incase the id is not mapped
+    public void update() {
+        String sql = "UPDATE sightings SET location = :location, ranger_name = :ranger_name WHERE id = :id";
+
+        try(Connection con = DB.sql2o.open()) {
+            con.createQuery(sql)
+                    .addParameter("location", location)
+                    .addParameter("rangername", ranger_name)
+                    .addParameter("id", id)
+                    .throwOnMappingFailure(false)
+                    .executeUpdate();
+        }
+    }
+
+}
