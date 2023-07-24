@@ -87,7 +87,18 @@ public class Animal {
                     .executeAndFetch(Animal.class);
         }
     }
- //
+      //finding animalusing id && error handling
+      public static Animal find(int id) {
+          String sql = "SELECT * FROM animals WHERE id = :id;";
+
+          try (Connection con = DB.sql2o.open()) {
+              return con.createQuery(sql)
+                      .addParameter("id", id)
+                      .throwOnMappingFailure(false)
+                      .executeAndFetchFirst(Animal.class);
+          }
+      }
+
 
 
 
