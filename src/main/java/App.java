@@ -47,6 +47,15 @@ public class App {
         return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+    //Retrieve Endangered Animal Form
+    get("/endangered/new", (request, response) -> {
+        Map<String, Object> model = new HashMap<String, Object>();
+        model.put("template", "templates/endangeredAnimalForm.vtl");
+        return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+
+
 
     )
 
