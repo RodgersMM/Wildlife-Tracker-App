@@ -24,4 +24,30 @@ public class Sighting implements DatabaseManagement {
         this.save();
     }
 
+    //Get Methods
+
+    public int getId(){
+        return id;
+    }
+
+    public int getAnimalId(){
+        return animal_id;
+    }
+
+    public String getLocation(){
+        return location;
+    }
+
+    public String getRangerName(){
+        return ranger_name;
+    }
+
+    public String getTimeSeen(){
+        return String.format("%1$TD %1$TR", timestamp);
+    }
+
+
+    //
+
+
 
