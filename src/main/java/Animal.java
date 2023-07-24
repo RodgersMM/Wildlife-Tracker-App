@@ -37,6 +37,18 @@ public class Animal {
         this.name = name;
     }
 
+    //Override Animal
+    @Override
+    public boolean equals(Object otherAnimal) {
+        if (otherAnimal instanceof Animal) {
+            Animal newAnimal = (Animal) otherAnimal;
+            return (this.getName().equals(newAnimal.getName()));
+        }
+
+        return false;
+    }
+
+
 
 
 
