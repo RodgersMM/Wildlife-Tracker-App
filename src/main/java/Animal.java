@@ -77,7 +77,17 @@ public class Animal {
         }
     }
 
-    //
+    //List all animals from animal table
+    public static List<Animal> all() {
+        String sql = "SELECT * FROM animals;";
+
+        try (Connection con = DB.sql2o.open()) {
+            return con.createQuery(sql)
+                    .throwOnMappingFailure(false)
+                    .executeAndFetch(Animal.class);
+        }
+    }
+ //
 
 
 
