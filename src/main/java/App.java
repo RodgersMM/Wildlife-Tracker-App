@@ -54,6 +54,25 @@ public class App {
         return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+    //Form to Post Endangered Animal Details
+    post("/endangered/new", (request, response) -> {
+        Map<String, Object> model = new HashMap<String, Object>();
+        String name = request.queryParams("name");
+        String health = request.queryParams("health");
+        String age = request.queryParams("age");
+        try {
+            Endangered endangered = new Endangered(name, health, age);
+            endangered.save();
+        } catch (IllegalArgumentException exception) {
+            System.out.println("Please enter all input fields.");
+        }
+        response.redirect("/animals");
+        return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+
+
+
 
 
 
