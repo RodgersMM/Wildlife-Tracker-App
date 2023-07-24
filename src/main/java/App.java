@@ -23,10 +23,18 @@ public class App {
             return new ModelAndView(model, layout);
         }, new VelocityTemplateEngine());
         }
-        //Animal Details Post form
-        post("/animals", (request, response) ->
 
-    {
+             //CREATE OBJECTS
+    // Retrieve New Animal Form
+             get("/animals/new", (request, response) -> {
+        Map<String, Object> model = new HashMap<String, Object>();
+        model.put("template", "templates/animalForm.vtl");
+        return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+
+        //Animal Details Post form
+        post("/animals", (request, response) -> {
         Map<String, Object> model = new HashMap<String, Object>();
         String name = request.queryParams("name");
         try {
@@ -84,7 +92,6 @@ public class App {
         int animal_id = Integer.parseInt(request.queryParams("animal"));
         String location = request.queryParams("location");
         String ranger_name = request.queryParams("rangerName");
-
 
         try {
             Sighting sighting = new Sighting(animal_id, location, ranger_name);
@@ -167,8 +174,6 @@ public class App {
         return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-
-
     //deleting a sighting
     get("/sightings/:id/delete", (request, response) -> {
         Map<String, Object> model = new HashMap<String, Object>();
@@ -185,5 +190,5 @@ public class App {
         response.redirect("/animals");
         return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
-    }
+}
 }
